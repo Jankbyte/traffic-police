@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Информация о участнике:</h1>
+        <h3>Основыне данные</h3>
+        <p><b>Номер:</b> <span th:text="${person.id}"></span></p>
+        <p><b>Фамилия:</b> <span th:text="${person.lastName}"></span></p>
+        <p><b>Имя:</b> <span th:text="${person.firstName}"></span></p>
+        <p><b>Отчество:</b> <span th:text="${person.patronymic}"></span></p>
+        <p><b>Дата рождения:</b> <span th:text="${person.birthDate}"></span></p>
+        <h3>Контакты</h3>
+        <p><b>Номер телефона:</b> <span th:text="${person.contact.phoneNumber}"></span></p>
+        <p><b>Электронная почта:</b> <span th:text="${person.contact.email}"></span></p>
+        <h3>Адрес</h3>
+        <p><b>Город:</b> <span th:text="${person.address.city}"></span></p>
+        <p><b>Улица/посёлок:</b> <span th:text="${person.address.street}"></span></p>
+        <p><b>Дом:</b> <span th:text="${person.address.house}"></span></p>
+        <p><b>Квартира:</b> <span th:text="${person.address.flat}"></span></p>
+        <a class="btn btn-primary" th:href="@{'/person/edit/' + ${person.id}}" role="button">Редактировать</a>
+        <button onclick="onClickDeletePerson()" type="button" class="btn btn-danger">Удалить</button>
+        <h5>Автомобили</h5>
+        <table th:if="${!person.cars?.empty}" class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Производитель</th>
+              <th>Модель</th>
+              <th>Цвет</th>
+              <th>Номер</th>
+              <th>Произведена</th>
+            </tr>
+          </thead>
+          <tbody th:each="car : ${person.cars}">
+            <tr>
+              <td>
+                <a th:text="${car.id}" th:href="@{'/car/' + ${car.id}}"></a>
+              </td>
+              <td th:text="${car.brand}"></td>
+              <td th:text="${car.model}"></td>
+              <td th:text="${car.color}"></td>
+              <td th:text="${car.number}"></td>
+              <td th:text="${car.created}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script src="/web-res/js/person.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

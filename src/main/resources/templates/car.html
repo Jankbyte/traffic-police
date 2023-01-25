@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Информация о автомобиле:</h1>
+        <p><b>Номер в базе:</b> <span th:text="${car.id}"></span></p>
+        <p><b>Производитель:</b> <span th:text="${car.brand}"></span></p>
+        <p><b>Модель:</b> <span th:text="${car.model}"></span></p>
+        <p><b>Цвет:</b> <span th:text="${car.color}"></span></p>
+        <p><b>Номер автомобиля:</b> <span th:text="${car.number}"></span></p>
+        <p th:if="${car.owner != null}"><b>Владелец:</b>
+          <a th:href="@{'/person/' + ${car.owner.id}}"
+             th:text="@{${car.owner.firstName} + ' ' + ${car.owner.lastName}}"></a>
+        </p>
+        <p th:if="${car.owner == null}"><b>Владелец:</b> Без владельца</p>
+        <p><b>Произведена:</b> <span th:text="${car.created}"></span></p>
+        <a class="btn btn-primary" th:href="@{'/car/edit/' + ${car.id}}" role="button">Редактировать</a>
+        <button onclick="onClickDeleteCar()" type="button" class="btn btn-danger">Удалить</button>
+        <h5>Штрафы</h5>
+        <table th:if="${!car.violations?.empty}" class="table">
+          <thead  class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Сообщение</th>
+              <th>Время нарушения</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody th:each="violation : ${car.violations}">
+            <tr>
+              <td>
+                <a th:text="${violation.id}" th:href="@{'/violation/' + ${violation.id}}"></a>
+              </td>
+              <td th:text="${violation.message}"></td>
+              <td th:text="${violation.time}"></td>
+              <td th:text="${violation.active}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <p th:if="${car.violations?.empty}">Штрафы не обнаружены</p>
+        <a class="btn btn-primary" th:href="@{'/violation/edit?id=' + ${car.id}}" role="button">Добавить</a>
+        <button onclick="onClickDeleteCar()" type="button" class="btn btn-danger">Удалить</button>
+      </div>
+    </main>
+    <script src="/web-res/js/car.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

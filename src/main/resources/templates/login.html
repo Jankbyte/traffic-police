@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="auth">
+        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+        <form th:action="@{/login}" method="POST">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="myuser">
+            <label for="floatingInput">Имя пользователя</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Пароль</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+        </form>
+        <div th:if="${param.error}" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Ошибка</h5>
+            <p class="card-text">Неверные данные!</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="auth">
+        <h1 th:text="${title}" class="h3 mb-3 fw-normal">Добавить автомобиль</h1>
+        <div class="form-floating">
+          <input th:value="${car?.owner?.id}" type="text" name="inputOwnerId" class="form-control" id="inputOwnerId">
+          <label for="inputOwnerId">Номер владельца</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${car?.brand}" type="text" name="inputBrand" class="form-control" id="inputBrand">
+          <label for="inputBrand">Производитель*</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${car?.model}" type="text" name="inputModel" class="form-control" id="inputModel">
+          <label for="inputModel">Модель*</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${car?.color}" type="text" name="inputColor" class="form-control" id="inputColor">
+          <label for="inputColor">Цвет*</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${car?.number}" type="text" name="inputNumber" class="form-control" id="inputNumber">
+          <label for="inputNumber">Номер*</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${car?.created}" type="text" name="inputCreated" class="form-control" id="inputCreated">
+          <label for="inputCreated">Произведена*</label>
+        </div>
+        <button th:if="${car == null}" onclick="onClickCreateCar()" type="submit" class="btn btn-primary">Добавить</button>
+        <button th:if="${car != null}" onclick="onClickUpdateCar()" type="submit" class="btn btn-primary">Обновить</button>
+        <div hidden id="violation-errors" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/edit-car.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

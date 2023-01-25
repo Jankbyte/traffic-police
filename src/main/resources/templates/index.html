@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Панель управления</h1>
+        <p>Здесь вы можете найти все ссылки для управления пользователями,
+        участниками, автомобилями и их нарушениями</p>
+        <div sec:authorize="hasRole('ROOT')" class="cards-elements">
+          <div class="card">
+            <div class="card-header">Администратор</div>
+            <div class="card-body">
+              <h5 class="card-title">Пользователи</h5>
+              <p class="card-text">Просмотр, добавление и обновление пользователей</p>
+              <a href="/user" class="btn btn-primary">Перейти</a>
+            </div>
+          </div>
+        </div>
+        <div class="cards-elements">
+          <div class="card">
+            <div class="card-header">Сотрудник</div>
+            <div class="card-body">
+              <h5 class="card-title">Участники</h5>
+              <p class="card-text">Просмотр, добавление и обновление участников движения</p>
+              <a href="/person" class="btn btn-primary">Перейти</a>
+            </div>
+          </div>
+        </div>
+        <div class="cards-elements">
+          <div class="card">
+            <div class="card-header">Сотрудник</div>
+            <div class="card-body">
+              <h5 class="card-title">Автомобили</h5>
+              <p class="card-text">Просмотр, добавление и обновление автомобилей</p>
+              <a href="/car" class="btn btn-primary">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

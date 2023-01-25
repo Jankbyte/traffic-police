@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Список автомобилей</h1>
+        <div th:if="${!cars.empty}">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Производитель</th>
+                <th>Модель</th>
+                <th>Номер</th>
+                <th>Цвет</th>
+                <th>Владелец</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="car : ${cars}">
+                <td><a th:text="${car.id}" th:href="@{'/car/' + ${car.id}}"></a></td>
+                <td th:text="${car.brand}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.number}"></td>
+                <td th:text="${car.color}"></td>
+                <td th:if="${car.owner != null}">
+                  <a th:text="@{${car.owner.firstName} + ' ' + ${car.owner.lastName}}" th:href="@{'/person/' + ${car.owner.id}}"></a>
+                </td>
+                <td th:if="${car.owner == null}">Без владельца</td>
+              </tr>
+            </tbody>
+          </table>
+          <nav th:replace="~{fragments/ui :: pageable-elements}"></nav>
+        </div>
+        <p th:if="${cars.empty}">Машины отсутствуют</p>
+        <a class="btn btn-primary" th:href="@{'/car/edit/'}" role="button">Добавить</a>
+      </div>
+    </main>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

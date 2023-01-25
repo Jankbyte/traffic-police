@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Информация о нарушении:</h1>
+        <p><b>Номер в базе:</b> <span th:text="${violation.id}"></span></p>
+        <p><b>Сообщение:</b> <span th:text="${violation.message}"></span></p>
+        <p><b>Время нарушения:</b> <span th:text="${violation.time}"></span></p>
+        <p><b>Активно:</b> <span th:text="${violation.active}"></span></p>
+        <p><b>Машина:</b>
+          <a th:href="@{'/car/' + ${violation.car.id}}"
+            th:text="@{${violation.car.brand} + ' ' + ${violation.car.model} + ' (' + ${violation.car.number} + ')'}">
+          </a>
+        </p>
+        <p><b>Нарушитель:</b>
+          <a th:text="@{${violation.violator.firstName} + ' ' + ${violation.violator.lastName}}"
+            th:href="@{'/person/' + ${violation.violator.id}}">
+          </a>
+        </p>
+        <a class="btn btn-primary" th:href="@{'/violation/edit/' + ${violation.id}}" role="button">Редактировать</a>
+        <button onclick="onClickDeleteViolation()" type="button" class="btn btn-danger">Удалить</button>
+      </div>
+    </main>
+    <script src="/web-res/js/violation.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

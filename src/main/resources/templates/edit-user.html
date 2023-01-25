@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="auth">
+        <h1 th:text="${title}" class="h3 mb-3 fw-normal">Добавить пользователя</h1>
+        <div class="form-floating">
+          <input th:value="${user?.name}" type="text" name="inputName" class="form-control" id="inputName">
+          <label for="inputName">Имя пользователя</label>
+        </div>
+        <div th:if="${user == null}" class="form-floating">
+          <input type="password" name="inputPassword" class="form-control" id="inputPassword">
+          <label for="inputPassword">Пароль</label>
+        </div>
+        <select id="select-role" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option value="1">ROOT</option>
+          <option value="2">EDITOR</option>
+        </select>
+        <div class="form-check">
+          <input th:checked="${user?.enabled}" id="checkBoxActive" class="form-check-input" type="checkbox" value="" name="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">Активный?</label>
+        </div>
+        <button th:if="${user == null}" onclick="onClickCreateUser()" type="submit" class="btn btn-primary">Добавить</button>
+        <button th:if="${user != null}" onclick="onClickUpdateUser()" type="submit" class="btn btn-primary">Обновить</button>
+        <div hidden id="violation-errors" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/edit-user.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

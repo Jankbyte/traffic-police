@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Список пользователей</h1>
+        <div th:if="${!users.empty}">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Роль</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="user : ${users}">
+                <td><a th:text="${user.id}" th:href="@{'/user/' + ${user.id}}"></a></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.role.name}"></td>
+                <td th:text="${user.enabled}"></td>
+              </tr>
+            </tbody>
+          </table>
+          <nav th:replace="~{fragments/ui :: pageable-elements}"></nav>
+        </div>
+        <p th:if="${users.empty}">Список пользователей пуст</p>
+        <a class="btn btn-primary" th:href="@{'/user/edit/'}" role="button">Добавить</a>
+      </div>
+    </main>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

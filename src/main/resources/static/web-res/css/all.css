@@ -1,0 +1,59 @@
+.edit-info {
+  vertical-align: top;
+  max-width: 800px;
+  margin: auto;
+  padding: 15px;
+}
+
+.edit-info button {
+    display: block;
+}
+
+.edit-info input {
+  margin-bottom: 10px;
+}
+
+.edit-info .card {
+  margin-top: 10px;
+}
+
+.edit-info h1 {
+  text-align: center;
+}
+
+.group-fields {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.auth {
+  max-width: 330px;
+  margin: auto;
+  padding: 15px;
+}
+
+.auth h1 {
+  text-align: center;
+}
+
+.auth input {
+  margin-bottom: 10px;
+}
+
+.auth .card {
+  margin-top: 10px;
+}
+
+.main-content {
+  max-width: 800px;
+  margin: auto;
+  padding: 15px;
+}
+
+.cards-elements {
+  margin-bottom: 10px;
+}
+
+.users-action-buttons * {
+    display: inline-block;
+}

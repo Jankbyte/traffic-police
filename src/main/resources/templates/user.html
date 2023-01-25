@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Информация о пользователе:</h1>
+        <p><b>Номер:</b> <span th:text="${user.id}"></span></p>
+        <p><b>Имя пользователя:</b> <span th:text="${user.name}"></span></p>
+        <p><b>Роль пользователя:</b> <span th:text="${user.role.name}"></span></p>
+        <p><b>Активен?:</b> <span th:text="${user.enabled}"></span></p>
+        <div class="users-action-buttons">
+          <form th:if="${#authentication.getPrincipal().getUsername() == user.name}" th:action="@{/logout}" method="POST">
+            <button type="submit" class="btn btn-primary">Выйти</button>
+          </form>
+          <div sec:authorize="hasRole('ROOT')">
+            <a class="btn btn-primary" th:href="@{'/user/edit/' + ${user.id}}" role="button">Редактировать</a>
+            <button onclick="onClickDeleteUser()" th:if="${#authentication.getPrincipal().getUsername() != user.name}" type="button" class="btn btn-danger">Удалить</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/user.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="auth">
+        <h1 th:text="${title}" class="h3 mb-3 fw-normal">Добавить нарушение</h1>
+        <div th:if="${violation == null}" class="form-floating">
+          <input th:value="${param.id}" type="text" name="inputCarId" class="form-control" id="inputCarId">
+          <label for="inputCarId">Уникальный номер автомобиля</label>
+        </div>
+        <div class="form-floating">
+          <input th:value="${violation?.message}" type="text" name="inputMessage" class="form-control" id="inputMessage">
+          <label for="inputMessage">Сообщение о нарушение</label>
+        </div>
+        <div  class="form-floating">
+          <input th:value="${violation?.time}" type="text" name="inputTime" class="form-control" id="inputTime">
+          <label for="inputTime">Время нарушения</label>
+        </div>
+        <div class="form-check">
+          <input th:checked="${violation?.active}" id="checkBoxActive" class="form-check-input" type="checkbox" value="" name="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">Активный?</label>
+        </div>
+        <button th:if="${violation == null}" onclick="onClickCreateViolation()" type="submit" class="btn btn-primary">Добавить</button>
+        <button th:if="${violation != null}" onclick="onClickUpdateViolation()" type="submit" class="btn btn-primary">Обновить</button>
+        <div hidden id="violation-errors" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/edit-violation.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="main-content">
+        <h1 class="h3 mb-3 fw-normal">Список участников</h1>
+        <div th:if="${!persons.empty}">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>Номер телефона</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="person : ${persons}">
+                <td><a th:text="${person.id}" th:href="@{'/person/' + ${person.id}}"></a></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.patronymic}"></td>
+                <td th:text="${person.birthDate}"></td>
+                <td th:text="${person.contact.phoneNumber}"></td>
+              </tr>
+            </tbody>
+          </table>
+          <nav th:replace="~{fragments/ui :: pageable-elements}"></nav>
+        </div>
+        <p th:if="${persons.empty}">Список участников пуст</p>
+        <a class="btn btn-primary" th:href="@{'/person/edit/'}" role="button">Добавить</a>
+      </div>
+    </main>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

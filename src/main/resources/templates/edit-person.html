@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" 
+  xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="~{fragments/ui :: head}"></head>
+  <body>
+    <main>
+      <nav th:replace="~{fragments/ui :: navbar}"></nav>
+      <div class="edit-info">
+        <h1 th:text="${title}" class="h3 mb-3 fw-normal">Добавить пользователя</h1>
+        <div class="group-fields">
+          <h5>Основные данные</h5>
+          <div class="form-floating">
+            <input th:value="${person?.lastName}" type="text" name="inputLastName" class="form-control" id="inputLastName">
+            <label for="inputLastName">Фамилия*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.firstName}" type="text" name="inputFirstName" class="form-control" id="inputFirstName">
+            <label for="inputFirstName">Имя*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.patronymic}" type="text" name="inputPatronymic" class="form-control" id="inputPatronymic">
+            <label for="inputPatronymic">Отчество*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.birthDate}" type="text" name="inputBirthDate" class="form-control" id="inputBirthDate">
+            <label for="inputBirthDate">Дата рождения*</label>
+          </div>
+        </div>
+        <div class="group-fields">
+          <h5>Адрес</h5>
+          <div class="form-floating">
+            <input th:value="${person?.address?.city}" type="text" name="inputCity" class="form-control" id="inputCity">
+            <label for="inputCity">Город*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.address?.street}" type="text" name="inputStreet" class="form-control" id="inputStreet">
+            <label for="inputStreet">Улица*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.address?.house}" type="text" name="inputHouse" class="form-control" id="inputHouse">
+            <label for="inputHouse">Дом*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.address?.flat}" type="text" name="inputFlat" class="form-control" id="inputFlat">
+            <label for="inputFlat">Квартира*</label>
+          </div>
+        </div>
+        <div class="group-fields">
+          <h5>Контакты</h5>
+          <div class="form-floating">
+            <input th:value="${person?.contact?.phoneNumber}" type="text" name="inputPhoneNumber" class="form-control" id="inputPhoneNumber">
+            <label for="inputPhoneNumber">Номер телефона*</label>
+          </div>
+          <div class="form-floating">
+            <input th:value="${person?.contact?.email}" type="text" name="inputEmail" class="form-control" id="inputEmail">
+            <label for="inputEmail">Электронная почта</label>
+          </div>
+        </div>
+        <button th:if="${person == null}" onclick="onClickCreatePerson()" type="submit" class="btn btn-primary">Добавить</button>
+        <button th:if="${person != null}" onclick="onClickUpdatePerson()" type="submit" class="btn btn-primary">Обновить</button>
+        <div hidden id="violation-errors" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        </div>
+      </div>
+    </main>
+    <script src="/web-res/js/edit-person.js"></script>
+    <script src="/web-res/js/all.js"></script>
+    <script src="/web-res/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
