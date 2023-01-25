@@ -34,3 +34,5 @@
 ## Конфигурация и запуск
 Для запуска приложения потребуется база данных PostgreSQL (или же альтернативы, но тогда потребуется сменить JDBC-драйвер), настроить базу под себя - можно в [этом] файле:
 
+[этом]: https://github.com/Jankbyte/traffic-police/blob/main/src/main/resources/application.yml
+
