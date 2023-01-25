@@ -8,9 +8,8 @@
   * Data JPA
   * MVC
     * Thymeleaf
-* HTML
-* CSS
-* JavaScript
+* HTML, CSS, JavaScript - для MVC
+* PostgreSQL - база данных, для хранения информации
 ## Что это за приложение?
 Это микросервис, который создан для помощи дорожной полиции.
 Оно имеет:
@@ -32,3 +31,4 @@
 ![auth](https://github.com/Jankbyte/traffic-police/blob/main/github-res/images/violations.png)
 * Список участников: \
 ![auth](https://github.com/Jankbyte/traffic-police/blob/main/github-res/images/persons.png)
+## Ко
