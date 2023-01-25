@@ -32,7 +32,17 @@
 * Список участников: \
 ![auth](https://github.com/Jankbyte/traffic-police/blob/main/github-res/images/persons.png)
 ## Конфигурация и запуск
-Для запуска приложения потребуется база данных PostgreSQL (или же альтернативы, но тогда потребуется сменить JDBC-драйвер), настроить базу под себя - можно в [этом] файле:
+Для запуска приложения потребуется база данных PostgreSQL (или же альтернативы, но тогда потребуется сменить JDBC-драйвер), настроить базу под себя - можно в [этом] файле, потребуется изменить следующие строчки:
+```
+# имя JDBC драйвера
+driver-class-name: org.postgresql.Driver
+# URL для подключения к базе данных
+url: jdbc:postgresql://localhost:5432/traffic_police
+# имя пользователя для работы в БД
+username: jankbyte
+# Пароль от пользователя
+password: jankbyte
+```
 
 [этом]: https://github.com/Jankbyte/traffic-police/blob/main/src/main/resources/application.yml
 
