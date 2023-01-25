@@ -32,7 +32,7 @@
 * Список участников: \
 ![auth](https://github.com/Jankbyte/traffic-police/blob/main/github-res/images/persons.png)
 ## Конфигурация и запуск
-Для запуска приложения потребуется база данных PostgreSQL (или же альтернативы, но тогда потребуется сменить JDBC-драйвер), настроить базу под себя - можно в [этом] файле, потребуется изменить следующие строчки:
+1. Для запуска приложения потребуется база данных PostgreSQL (или же альтернативы, но тогда потребуется сменить JDBC-драйвер), настроить базу под себя - можно в [этом] файле, потребуется изменить следующие строчки:
 ```
 # имя JDBC драйвера
 driver-class-name: org.postgresql.Driver
@@ -43,6 +43,18 @@ username: jankbyte
 # Пароль от пользователя
 password: jankbyte
 ```
-
+2. Далее необходимо собрать проект через gradle, для этого необходимо выполнить следующие команды:
+```
+# переходим в папку с проектом (settings.gradle должен лежать в данной папке)
+cd D:/Projects/traffic-police
+# собираем запускамый JAR-файл
+gradle bootJar
+```
+3. Для запуска проекта, переходим в ```build/libs``` и находим там единственный JAR-ник. Запускаем его следующей командой (не забудьте запустить базу данных, перед этим):
+```
+cd D:/Projects/traffic-police/build/libs
+# запускаем JAR-файл
+java -jar Traffic-police.jar
+```
 [этом]: https://github.com/Jankbyte/traffic-police/blob/main/src/main/resources/application.yml
 
