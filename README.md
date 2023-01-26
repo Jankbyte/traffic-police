@@ -9,7 +9,7 @@
   * MVC
     * Thymeleaf
 * HTML, CSS, JavaScript - для MVC
-* PostgreSQL - база данных, для хранения информации
+* PostgreSQL - база данных, для хранения информации \
 Для тестирования используется:
 * JUnit 5
 * Mockito
